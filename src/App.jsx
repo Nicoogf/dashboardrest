@@ -1,152 +1,120 @@
-import { RiAddLine, RiArrowDownLine, RiCloseLine, RiDeleteBin6Line, RiMenu3Fill, RiPieChartLine, RiSearch2Line, RiUser3Line } from 'react-icons/ri';
-import './App.css' ;
-import Sidebar from './components/shared/Sidebar' ;
-import { useState } from 'react';
+import { useState } from "react";
+import {
+  RiMenu3Fill,
+  RiUser3Line,
+  RiAddLine,
+  RiPieChartLine,
+  RiCloseLine,
+  RiArrowDownSLine,
+} from "react-icons/ri";
+// Components
+import Sidebar from "./components/shared/Sidebar";
+import Car from "./components/shared/Car";
+import Header from "./components/shared/Header";
+import Card from "./components/shared/Card";
+import "./app.css"
 
 function App() {
+  const [showMenu, setShowMenu] = useState(false);
+  const [showOrder, setShowOrder] = useState(false);
 
-  const [ showMenu, setShowMenu ] = useState( false ) ;
-  const [ showOrder , setShowOrder ] = useState ( false ) ;
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+    setShowOrder(false);
+  };
 
-  const toggleMenu= () => {
-    setShowMenu(!showMenu)
-  }
-
-  const toggleOrder= () => {
-    setShowOrder(!showOrder)
-    setShowMenu(false)
-  }
+  const toggleOrders = () => {
+    setShowOrder(!showOrder);
+    setShowMenu(false);
+  };
 
   return (
-  <div className='bg-[#262837] w-full min-h-screen'>
-    <Sidebar showMenu= { showMenu } />
-    <nav className='bg-[#1f1d2b] lg:hidden fixed w-full bottom-0 left-0 text-3xl text-gray-400 py-4 px-8 flex items-center justify-between rounded-tl-xl rounded-tr-xl'>
-      
-      <button className=' p-2'> 
-        <RiUser3Line/> 
-      </button>
-
-      <button className=' p-2'>
-         <RiAddLine/> 
-      </button>
-
-      <button className=' p-2' onClick={ toggleOrder }> 
+    <div className="bg-[#262837] w-full min-h-screen">
+      <Sidebar showMenu={showMenu} />
+      <Car showOrder={showOrder} setShowOrder={setShowOrder} />
+      {/* Menu movil */}
+      <nav className="bg-[#1F1D2B] lg:hidden fixed w-full bottom-0 left-0 text-3xl text-gray-400 py-2 px-8 flex items-center justify-between rounded-tl-xl rounded-tr-xl">
+        <button className="p-2">
+          <RiUser3Line />
+        </button>
+        <button className="p-2">
+          <RiAddLine />
+        </button>
+        <button onClick={toggleOrders} className="p-2">
           <RiPieChartLine />
-      </button>
-
-      <button className=' text-white  p-2' onClick={ toggleMenu }> 
-            { showMenu ? <RiCloseLine /> : <RiMenu3Fill/> }
-
-      </button>
-    </nav>
-
-    <main className='lg:pl-32  pb-20'>
-
-      <div className='md:p-8 p-4'> 
-
-      <header className=''>
-
-        <div className='flex flex-col md:flex-row md:justify-between gap-4 mb-6 md-items-center'>
-
-          <div>
-            <h1 className='text-2xl text-gray-300'> Bistro Resto </h1>
-            <p className='text-gray-500'> 07 Octubre 2023</p>
+        </button>
+        <button onClick={toggleMenu} className="text-white p-2">
+          {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
+        </button>
+      </nav>
+      <main className="lg:pl-32 lg:pr-96 pb-20">
+        <div className="md:p-8 p-4">
+          {/* Header */}
+          <Header />
+          {/* Title content */}
+          <div className="flex items-center justify-between mb-16">
+            <h2 className="text-xl text-gray-300"> Lista de Platos </h2>
+            <button className="flex items-center gap-4 text-gray-300 bg-[#1F1D2B] py-2 px-4 rounded-lg">
+              <RiArrowDownSLine /> Filtrar
+            </button>
           </div>
-
-          <form>
-              <div className='w-full relative'>
-                <RiSearch2Line className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-300'/>
-                <input placeholder="Search" type='text' className='w-full py-2 pl-10 pr-4 bg-[#1f1d2b] rounded-lg text-gray-300 outline-none'/> 
-              </div>           
-         </form>
-          
-       
+          {/* Content */}
+          <div className="p-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16">
+            {/* Card */}
+            <Card
+              img="peperoni.png"
+              description="Pizza Peperoni"
+              price="2.00"
+              inventory="Queso mozzarella, Pepperoni, Orégano, Aceitunas negras "
+            />
+            {/* Card */}
+            <Card
+              img="hawai.png"
+              description="Pizza Hawai"
+              price="2.25"
+              inventory="Jamón, Piña, Salsa de tomate y Cebolla"
+            />
+            {/* Card */}
+            <Card
+              img="teotl.png"
+              description="Pizza Teotl"
+              price="2.15"
+              inventory="Carne de Hamburguesa,Piña,Champiñones y Cebolla"
+            />
+            {/* Card */}
+            <Card
+              img="pepitotl.png"
+              description="Pizza Pepitotl"
+              price="2.30"
+              inventory="Carne de Res , Frijoles y Aguacate"
+            />
+            {/* Card */}
+            <Card
+              img="totecl.png"
+              description="Pizza Totec"
+              price="2.10"
+              inventory="Aceitunas negras,Champiñones y Piña"
+            />
+            {/* Card */}
+            <Card
+              img="metzi.png"
+              description="Pizza Metzi"
+              price="2.15"
+              inventory="Pimientos , Espinaca, Cebolla y Elote "
+            />
+            {/* Card */}
+            <Card
+              img="tresqueos.png"
+              description="Pizza Tres Quetzin"
+              price="2.30"
+              inventory="Queso Cheddar, Couda y de Cabra"
+            />
+           
+          </div>
         </div>
-        
-        <nav className='text-gray-300 flex items-center justify-between md:justify-start md:gap-8 border-b mb-6'> 
-
-          <a href='#' className='py-2 pr-4 border-[#ec7c6a] relative before:w-1/2 before:h-[2px] before:absolute before:bg-[#ec7c6a] before:left-0 before:rounded-full before:-bottom-[1px] text-[#ec7c6a]'> Hot dishes </a>
-          <a href='#' className='py-2 pr-4'> Cold dishes </a>
-          <a href='#' className='py-2 pr-4'> Soap  </a>
-          <a href='#' className='py-2'> Grill </a>
-
-        </nav>
-
-      </header>
-
-      <div className='flex items-center justify-between mb-16'>
-          <h2 className='text-xl text-gray-300'>Choose Dishes</h2>
-          <button className='flex items-center gap-4 text-gray-300 bg-[#1f1d2b] py-2 px-4 rounded-lg'> <RiArrowDownLine /> Dine in 
-          </button>
-      </div>
-
-      {/* Content */}
-      <div className='p-8 grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3'>
-        {/* Cart*/}
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-          <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-          <p className='text-xl'> Speacy seasone </p>
-          <span className='text-gray-400'> $2.29</span>
-          <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-        <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-        <p className='text-xl'> Speacy seasone </p>
-        <span className='text-gray-400'> $2.29</span>
-        <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-        <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-        <p className='text-xl'> Speacy seasone </p>
-        <span className='text-gray-400'> $2.29</span>
-        <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-        <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-        <p className='text-xl'> Speacy seasone </p>
-        <span className='text-gray-400'> $2.29</span>
-        <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-          <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-          <p className='text-xl'> Speacy seasone </p>
-          <span className='text-gray-400'> $2.29</span>
-          <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-        <div className='bg-[#1f1d2b] p-8 rounded-xl flex flex-col items-center text-gray-300 text-center gap-2'>
-
-        <img src="./plato.png" className='w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full'/>
-
-        <p className='text-xl'> Speacy seasone </p>
-        <span className='text-gray-400'> $2.29</span>
-        <p className='text-gray-600'> 20 Bowls Dispnibles</p>
-        </div>
-
-      </div>
-
-
-      
-      </div>
-
-     
-    </main>
-  </div>
-  )
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
