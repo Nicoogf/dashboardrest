@@ -190,7 +190,7 @@ const Card = (props) => {
             <span>$0</span>
           </div>
           <div className="flex items-center justify-between mb-6">
-            <span className="text-gray-400">Subtotal</span>
+            <span className="text-gray-400">Sub-total</span>
             <span>$15,25</span>
           </div>
           <div>
