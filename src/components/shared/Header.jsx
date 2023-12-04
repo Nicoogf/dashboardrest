@@ -11,7 +11,7 @@ const Header = () => {
           <p className="text-gray-500">10 octubre 2023</p>
         </div>
         <form>
-          <div className="w-full relative">
+          <div className="w-full relative bg-white">
             <RiSearch2Line className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
             <input
               type="text"
