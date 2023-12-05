@@ -8,7 +8,7 @@ const Header = () => {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
         <div>
           <h1 className="text-2xl text-gray-300">Pizza App</h1>
-          <p className="text-gray-500">10 octubre 2023</p>
+          <p className="text-gray-400">10 octubre 2023</p>
         </div>
         <form>
           <div className="w-full relative bg-white">
